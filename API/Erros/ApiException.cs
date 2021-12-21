@@ -14,7 +14,5 @@ namespace API.Erros
             Message = message;
             Details = details;
         }
-        
-
     }
 }
