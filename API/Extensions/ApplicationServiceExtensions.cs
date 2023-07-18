@@ -2,7 +2,6 @@ using API.Data;
 using API.Helpers;
 using API.Interfaces;
 using API.Services;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +19,8 @@ namespace API.Extensions
             {
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+            services.AddScoped<IPhotoService, PhotoService>();
 
             return services;
         }
