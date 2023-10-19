@@ -4,11 +4,13 @@ namespace API.Extensions
 {
     public static class DateTimeExtensions
     {
-        public static int CalculateAge(this DateTime dateOfBirth)
+        public static int CalculateAge(this DateOnly dateOfBirth)
         {
-            var today = DateTime.Today;
+            var today = DateOnly.FromDateTime(DateTime.Now);
             var age = today.Year - dateOfBirth.Year;
-            if (today.AddYears(-age) < dateOfBirth.Date) age--;
+            
+            if (dateOfBirth > today.AddYears(-age)) age--;
+            
             return age;
         }
     }
